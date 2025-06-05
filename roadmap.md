@@ -1,12 +1,10 @@
-# pqcBitcoin x Latent Roadmap
-
-## Falcon Signature Aggregation & Quantum Proof-of-Work Integration
+# Falcon Signature Aggregation & Quantum Proof-of-Work Integration
 
 Development plan for integrating Falcon signature aggregation and Quantum Proof-of-Work (Q-PoW).
 
 ---
 
-### 1  Current status of `pqc-bitcoin`
+### 1. Current status of `pqc-bitcoin`
 
 | Area                   | What is already there                                                                                         |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------- |
@@ -18,7 +16,7 @@ Development plan for integrating Falcon signature aggregation and Quantum Proof-
 
 ---
 
-### 2  Architecture alignment
+### 2. Architecture alignment
 
 | Layer              | pqc-bitcoin baseline                    |
 | ------------------ | --------------------------------------- |
@@ -30,7 +28,7 @@ Development plan for integrating Falcon signature aggregation and Quantum Proof-
 
 ---
 
-### 3  Integration scope (three incremental work-packages)
+### 3. Integration scope (three incremental work-packages)
 
 | WP                                             | Objective                                         | Key tasks                                                                                                                              |
 | ---------------------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
@@ -40,7 +38,7 @@ Development plan for integrating Falcon signature aggregation and Quantum Proof-
 
 ---
 
-### 4  Initial testnet setup
+### 4. Initial testnet setup
 
 | Parameter        | Value                                                                       |
 | ---------------- | --------------------------------------------------------------------------- |
@@ -64,16 +62,13 @@ Deployment steps:
 
 ---
 
-### 5  Next actions (2-week sprint view)
-
-| Day     | Action                                                       |
-| ------- | ------------------------------------------------------------ |
-| D1–D2   | Clone repo, run unit tests, measure baseline CPU verify cost |
-| D3–D6   | Implement `libfalcon_agg` wrapper + tests                    |
-| D7      | Draft `OP_FALCONAGGVERIFY` opcode spec                       |
-| D8–D10  | Integrate Q-PoW hash, regenerate genesis                     |
-| D11     | Docker testnet, publish connect instructions                 |
-| D12–D14 | Internal security review; open collaboration PRs to QBlockQ  |
+### 5. Next steps
+- [ ] Clone repo, run unit tests
+- [ ] Implement `libfalcon_agg` wrapper + tests                    
+- [ ] Draft `OP_FALCONAGGVERIFY` opcode spec                       
+- [ ] Integrate Q-PoW hash, regenerate genesis                     
+- [ ] Docker testnet, publish connect instructions                 
+- [ ] Internal security review; open collaboration PRs to QBlockQ  
 
 ---
 
