@@ -18,13 +18,14 @@ Development plan for integrating Falcon signature aggregation and Quantum Proof-
 
 ### 2. Architecture alignment
 
-| Layer              | pqc-bitcoin baseline                    |
-| ------------------ | --------------------------------------- |
-| **Consensus**      | Classic SHA-256 PoW                     |
-| **Crypto library** | Liboqs-backed KEM/SIG modules           |
-| **Script VM**      | `OP_CHECKPQCVERIFY`                     |
-| **P2P features**   | `NODE_PQC` service bit                  |
-| **Wallet / RPC**   | PQC key generation, single-sig spending |
+| Layer              | pqc-bitcoin baseline                    | Additions                                                          |
+| ------------------ | --------------------------------------- | ------------------------------------------------------------------ |
+| **Consensus**      | Classic SHA-256 PoW                     | Replace with QPoW engine (Section 4)                               |
+| **Crypto library** | Liboqs-backed KEM/SIG modules           | Add `libfalcon_agg` (aggregator + verifier)                        |
+| **Script VM**      | `OP_CHECKPQCVERIFY`                     | Add `OP_FALCONAGGVERIFY` (aggregated sig check)                    |
+| **P2P features**   | `NODE_PQC` service bit                  | Add `NODE_QPOW` and `NODE_FALCONAGG` bits                          |
+| **Wallet / RPC**   | PQC key generation, single-sig spending | New RPC: `combinefalconsig` (aggregation) + batched fee estimation |
+
 
 ---
 
@@ -32,8 +33,8 @@ Development plan for integrating Falcon signature aggregation and Quantum Proof-
 
 | WP                                             | Objective                                         | Key tasks                                                                                                                              |
 | ---------------------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| **WP-A — Falcon aggregation**                  | Block-level support for your BLS-style aggregator | 1. Embed `libfalcon_agg` under `src/crypto/falconagg/`<br>2. New script opcode & interpreter path<br>3. Wallet RPC + GUI toggle        |
-| **WP-B — Quantum PoW**                         | Swap SHA-256 double-hash with Q-PoW function      | 1. Add `qpow_hash()` in `src/pow_q.cpp`<br>2. Difficulty-adjust & header version bump<br>3. Miner reference implementation (CPU)       |
+| **WP-A — Falcon aggregation**                  | Block-level support for Falcon sig aggregator | 1. Embed `libfalcon_agg` under `src/crypto/falconagg/`<br>2. New script opcode & interpreter path<br>3. Wallet RPC + GUI toggle        |
+| **WP-B — Quantum PoW**                         | Swap SHA-256 double-hash with QPoW function      | 1. Add `qpow_hash()` in `src/pow_q.cpp`<br>2. Difficulty-adjust & header version bump<br>3. Miner reference implementation (CPU)       |
 | **WP-C — Network handshake & rolling upgrade** | Ensure mixed nodes don't stall                    | 1. Advertise new service bits<br>2. "segwit-style" feature-bits in block version<br>3. Soft-fork activation via BIP-9 style signalling |
 
 ---
